@@ -216,3 +216,10 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+checkpoints/
+train_tokens/
+test_tokens/
+test.py/
+val_tokens/
+AI Research Engineer Assignment.pdf
