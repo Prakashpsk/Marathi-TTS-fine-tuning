@@ -1,8 +1,31 @@
-﻿# Marathi Indic-Speak Adaptation with QLoRA
+---
+language:
+- mr
+library_name: peft
+base_model: bodhan-ai/indic-speak
+datasets:
+- ai4bharat/Rasa
+pipeline_tag: text-to-speech
+tags:
+- marathi
+- text-to-speech
+- speech-generation
+- peft
+- lora
+- qlora
+- snac
+---
+# Marathi Indic-Speak Adaptation with QLoRA
 
 This repository contains a completed QLoRA adaptation of [`bodhan-ai/indic-speak`](https://huggingface.co/bodhan-ai/indic-speak) for Marathi text-to-speech using the Marathi configuration of [`ai4bharat/Rasa`](https://huggingface.co/datasets/ai4bharat/Rasa).
 
 The experiment trains LoRA adapters on audio-token prediction while keeping the 4-bit base model, SNAC codec, and Vocos decoder frozen. The official Rasa `train` split is used for optimization and the official `test` split is held out for evaluation.
+## Project links
+
+- **Training code and notebook:** [GitHub repository](https://github.com/Prakashpsk/Marathi-TTS-fine-tuning)
+- **Fine-tuned QLoRA adapter:** [Hugging Face model](https://huggingface.co/PrakashPask/marathi-indic-speak-qlora)
+- **Base model:** [Bodhan AI Indic-Speak](https://huggingface.co/bodhan-ai/indic-speak)
+- **Training dataset:** [AI4Bharat Rasa](https://huggingface.co/datasets/ai4bharat/Rasa)
 
 ## Results
 
@@ -113,17 +136,45 @@ The run used an NVIDIA H200. Although measured peak allocation was 12.43 GiB, to
 
 ## Loading the adapter
 
-Load the exact base-model revision from `run_config.json` and construct Bodhan's official TTS object. Attach the adapter to its language model with PEFT:
+The following example loads the pinned base language model and attaches the PEFT adapter. Accept the Indic-Speak access conditions on Hugging Face before running it.
+
+```python
+from transformers import AutoModelForCausalLM
+from peft import PeftModel
+
+BASE_MODEL_ID = "bodhan-ai/indic-speak"
+BASE_MODEL_REVISION = "76e0814f189321efe550011850cd288dae366aad"
+ADAPTER_ID = "PrakashPask/marathi-indic-speak-qlora"
+
+base_model = AutoModelForCausalLM.from_pretrained(
+    BASE_MODEL_ID,
+    revision=BASE_MODEL_REVISION,
+    torch_dtype="auto",
+    device_map="auto",
+)
+
+model = PeftModel.from_pretrained(
+    base_model,
+    ADAPTER_ID,
+    is_trainable=False,
+)
+model.eval()
+```
+
+This loads the adapted language model but does not by itself generate a WAV file. For speech synthesis, construct Bodhan's official Indic-Speak TTS object and attach the adapter to its language-model attribute:
 
 ```python
 from peft import PeftModel
 
-tts.lm = PeftModel.from_pretrained(tts.lm, "adapter", is_trainable=False)
+tts.lm = PeftModel.from_pretrained(
+    tts.lm,
+    "PrakashPask/marathi-indic-speak-qlora",
+    is_trainable=False,
+)
 tts.lm.eval()
 ```
 
-Use the official prompt construction, token conversion, and Vocos decoding path. The notebook contains the complete revision-pinned reload procedure and validates the TTS language-model attribute before attaching the adapter.
-
+Use the official prompt construction, audio-token conversion, and Vocos decoding path. The notebook contains the complete revision-pinned reload procedure.
 ## Generated comparisons
 
 Four baseline/fine-tuned pairs use the same prompt, speaker label, random seed, temperature (`0.6`), and top-p (`0.9`). Three prompts come from the held-out test manifest and one is a manually added neutral Marathi prompt.
