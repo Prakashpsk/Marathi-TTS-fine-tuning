@@ -1,0 +1,43 @@
+{
+  "schema_version": 2,
+  "selected_samples_sha256": "381a833ad5fca0163b523b16778823906c67d19864562ea9cb268c5ccb3819bf",
+  "snapshots": {
+    "base_model": "bodhan-ai/indic-speak",
+    "base_requested_revision": "76e0814f189321efe550011850cd288dae366aad",
+    "base_resolved_revision": "76e0814f189321efe550011850cd288dae366aad",
+    "adapter_model": "PrakashPask/marathi-indic-speak-qlora",
+    "adapter_requested_revision": "main",
+    "adapter_resolved_revision": "e4f292cbc78a7262b3d89b751ab49c90da053cef"
+  },
+  "decoding": {
+    "temperature": 0.6,
+    "top_p": 0.9,
+    "top_k": 50,
+    "max_new_tokens": 2520,
+    "stock": false,
+    "sample_rate": 24000
+  },
+  "seed": 3407,
+  "warmup_excluded": true,
+  "environment": {
+    "python": "3.12.11",
+    "platform": "Linux-6.8.0-1067-gcp-x86_64-with-glibc2.39",
+    "packages": {
+      "accelerate": "1.15.0",
+      "datasets": "3.6.0",
+      "huggingface-hub": "1.33.0",
+      "jiwer": "4.0.0",
+      "peft": "0.21.0",
+      "snac": "1.2.1",
+      "torch": "2.8.0+cu128",
+      "transformers": "5.17.0"
+    },
+    "cuda_available": true,
+    "cuda_version": "12.8",
+    "cudnn_version": 91002,
+    "gpu_names": [
+      "NVIDIA L4"
+    ]
+  },
+  "generation_signature": "212e28188a7d36941019d066f74292491fa8fd5740d23ca17b2872a506c8ee32"
+}

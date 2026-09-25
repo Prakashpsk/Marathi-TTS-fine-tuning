@@ -1,0 +1,44 @@
+{
+  "selection_config": {
+    "schema_version": 2,
+    "dataset_id": "ai4bharat/Rasa",
+    "dataset_config": "Marathi",
+    "dataset_revision": "632f55c7ac590219d41cd7adffce5b440e4604f5",
+    "split": "test",
+    "num_samples": 15,
+    "seed": 3407,
+    "allow_train_text_overlap": false,
+    "deduplicate_normalized_test_text": true,
+    "balance_adapter_speaker_labels": true
+  },
+  "selected_samples_sha256": "381a833ad5fca0163b523b16778823906c67d19864562ea9cb268c5ccb3819bf",
+  "dataset_id": "ai4bharat/Rasa",
+  "dataset_config": "Marathi",
+  "split": "test",
+  "dataset_revision": "632f55c7ac590219d41cd7adffce5b440e4604f5",
+  "seed": 3407,
+  "valid_unique_candidates": 2119,
+  "selected_count": 15,
+  "selection_method": "output-blind deterministic SHA-256 ordering, balanced by adapter speaker label",
+  "exact_train_text_overlap_excluded": true,
+  "unique_train_transcripts_scanned": 23084,
+  "selected_by_gender": {
+    "Female": 7,
+    "Male": 8
+  },
+  "selected_by_style": {
+    "BOOK": 2,
+    "CONV": 2,
+    "NEWS": 2,
+    "PROPER NOUN": 2,
+    "WIKI": 7
+  },
+  "selected_by_speaker_label": {
+    "MarathiRasaFemale": 7,
+    "MarathiRasaMale": 8
+  },
+  "rejected": {
+    "duplicate_normalized_text": 42,
+    "exact_train_text_overlap": 834
+  }
+}

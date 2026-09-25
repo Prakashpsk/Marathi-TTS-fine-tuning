@@ -45,6 +45,26 @@ The experiment trains LoRA adapters on audio-token prediction while keeping the 
 
 Loss measures teacher-forced audio-token prediction. It does not directly measure pronunciation, naturalness, speaker similarity, or intelligibility.
 
+## Held-out TTS evaluation
+
+The fine-tuned adapter was evaluated on 15 deterministically selected rows from the official Rasa Marathi `test` split. Normalized transcripts that also occur in the training split were excluded. All 15 generations completed successfully, and `openai/whisper-large-v3-turbo` was used to transcribe the generated audio for corpus-level WER and CER calculation.
+
+| Measurement | Result |
+|---|---:|
+| Evaluated rows | 15 |
+| Successful / failed generations | 15 / 0 |
+| Corpus WER | 66.9388% |
+| Corpus CER | 20.7738% |
+| Mean full-waveform response time | 72.930726 s |
+| Median (P50) response time | 65.218673 s |
+| P95 response time | 177.864861 s |
+| Minimum / maximum response time | 21.259229 / 191.277885 s |
+| Generation GPU | NVIDIA L4 |
+
+Response time is the local wall-clock time until the non-streaming TTS call returns the complete waveform; it is not time to first audio. The warm-up call was excluded. This is a preliminary 15-sample adapter evaluation, not a statistically strong benchmark. It does not establish improvement over the base model because the base model was not evaluated on the same rows with the same decoding and ASR configuration.
+
+The evaluator and detailed methodology are documented in [`evaluation/README.md`](evaluation/README.md). Machine-readable results are stored in `evaluation/results/summary.json`.
+
 ## Method
 
 The notebook:
@@ -201,7 +221,7 @@ No perceptual-quality improvement is claimed from token loss alone.
 - At least one short prompt caused runaway generation.
 - Fertility outliers were reported but not removed.
 - Marathi text encoding/rendering should be verified when moving artifacts between environments.
-- No formal listening study or ASR-based intelligibility evaluation has been completed.
+- No formal listening study has been completed; the ASR-based evaluation is limited to 15 samples.
 
 ## Licenses and attribution
 

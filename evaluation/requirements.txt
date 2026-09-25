@@ -1,0 +1,15 @@
+# Install the CUDA-enabled PyTorch build suitable for your machine first.
+accelerate>=1.2
+datasets>=3.4,<4
+huggingface-hub>=1.0
+jiwer>=3.0
+librosa>=0.10
+numpy>=1.26,<3
+peft>=0.21,<1
+safetensors>=0.4
+scipy>=1.11
+sentencepiece>=0.2
+snac>=1.2
+soundfile>=0.12
+torch>=2.4
+transformers>=5,<6

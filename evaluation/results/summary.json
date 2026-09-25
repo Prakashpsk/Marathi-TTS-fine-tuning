@@ -1,0 +1,79 @@
+{
+  "evaluated_rows": 15,
+  "successful_generations": 15,
+  "failed_generations": 0,
+  "seed": 3407,
+  "dataset": {
+    "id": "ai4bharat/Rasa",
+    "config": "Marathi",
+    "split": "test",
+    "revision": "632f55c7ac590219d41cd7adffce5b440e4604f5",
+    "train_text_overlap_excluded": true
+  },
+  "models": {
+    "base": "bodhan-ai/indic-speak",
+    "base_revision": "76e0814f189321efe550011850cd288dae366aad",
+    "adapter": "PrakashPask/marathi-indic-speak-qlora",
+    "adapter_revision": "e4f292cbc78a7262b3d89b751ab49c90da053cef",
+    "asr": "openai/whisper-large-v3-turbo",
+    "asr_revision": "41f01f3fe87f28c78e2fbf8b568835947dd65ed9"
+  },
+  "metrics": {
+    "wer_percent": 66.9388,
+    "cer_percent": 20.7738,
+    "response_time_seconds": {
+      "mean": 72.930726,
+      "p50": 65.218673,
+      "p95": 177.864861,
+      "minimum": 21.259229,
+      "maximum": 191.277885,
+      "unit": "seconds",
+      "definition": "wall time until the local non-streaming TTS call returns the complete waveform",
+      "warmup_excluded": true
+    }
+  },
+  "normalization": "Unicode NFC; lowercase; keep Unicode letters, combining marks, and numbers; replace punctuation/symbols with spaces; collapse whitespace",
+  "metric_library": "jiwer",
+  "generation_environment": {
+    "python": "3.12.11",
+    "platform": "Linux-6.8.0-1067-gcp-x86_64-with-glibc2.39",
+    "packages": {
+      "accelerate": "1.15.0",
+      "datasets": "3.6.0",
+      "huggingface-hub": "1.33.0",
+      "jiwer": "4.0.0",
+      "peft": "0.21.0",
+      "snac": "1.2.1",
+      "torch": "2.8.0+cu128",
+      "transformers": "5.17.0"
+    },
+    "cuda_available": true,
+    "cuda_version": "12.8",
+    "cudnn_version": 91002,
+    "gpu_names": [
+      "NVIDIA L4"
+    ]
+  },
+  "scoring_environment": {
+    "python": "3.12.11",
+    "platform": "Linux-6.8.0-1067-gcp-x86_64-with-glibc2.39",
+    "packages": {
+      "accelerate": "1.15.0",
+      "datasets": "3.6.0",
+      "huggingface-hub": "1.33.0",
+      "jiwer": "4.0.0",
+      "peft": "0.21.0",
+      "snac": "1.2.1",
+      "torch": "2.8.0+cu128",
+      "transformers": "5.17.0"
+    },
+    "cuda_available": true,
+    "cuda_version": "12.8",
+    "cudnn_version": 91002,
+    "gpu_names": [
+      "NVIDIA L4"
+    ]
+  },
+  "generation_signature": "212e28188a7d36941019d066f74292491fa8fd5740d23ca17b2872a506c8ee32",
+  "asr_signature": "91e84f3a5504dcfbbc4edc70521dec3c205dc86a78a3692d4e17b67bf0e4c7ff"
+}

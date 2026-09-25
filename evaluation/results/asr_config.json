@@ -1,0 +1,12 @@
+{
+  "schema_version": 2,
+  "model": "openai/whisper-large-v3-turbo",
+  "requested_revision": "main",
+  "resolved_revision": "41f01f3fe87f28c78e2fbf8b568835947dd65ed9",
+  "max_new_tokens": 440,
+  "language": "marathi",
+  "task": "transcribe",
+  "chunk_seconds": 25,
+  "normalization_version": 1,
+  "asr_signature": "91e84f3a5504dcfbbc4edc70521dec3c205dc86a78a3692d4e17b67bf0e4c7ff"
+}
